@@ -201,7 +201,7 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
         }
 
         //Prepare the notch color.
-        mNotchPaint = new Paint();
+        mNotchPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         prepareNotchPaint();
 
         mNotchPath = new Path();
@@ -282,7 +282,6 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
             mRightSpacer.setLayoutParams(rightParams);
 
             calculateNotchPath();
-
             invalidate();
         }
     }
@@ -295,9 +294,13 @@ public final class RulerValuePicker extends FrameLayout implements ObservableHor
     private void calculateNotchPath() {
         mNotchPath.reset();
 
-        mNotchPath.moveTo(getWidth() / 2 - 30, 0);
-        mNotchPath.lineTo(getWidth() / 2, 40);
-        mNotchPath.lineTo(getWidth() / 2 + 30, 0);
+        mNotchPath.moveTo(getWidth() / 2 - 20, getHeight());
+        mNotchPath.lineTo(getWidth() / 2 - 3, getHeight() - 30);
+        mNotchPath.lineTo(getWidth() / 2 - 3, 0);
+        mNotchPath.lineTo(getWidth() / 2 + 3, 0);
+        mNotchPath.lineTo(getWidth() / 2 + 3, getHeight() - 30);
+        mNotchPath.lineTo(getWidth() / 2 + 20, getHeight());
+
     }
 
     /**
